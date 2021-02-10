@@ -1,6 +1,6 @@
 <?php
 require '../vendor/autoload.php';
-// require '../config/config.php';
+require '../config/config.php';
 
 require '../services/curl.php';
 require '../services/borderFilter.php';
