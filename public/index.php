@@ -60,7 +60,7 @@ $app->post('/api/restcountries', function($request, $response, $args) {
 $app->get('/api/geocountries', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url = 'https://secure.geonames.org/countryInfoJSON?&username=' . $API_GEONAMES;
+    $url = 'https://secure.geonames.org/countryInfoJSON?&username=' . getenv('API_GEONAMES');
     $data = fetch_api(array($url, 'geonames'));
     
     return $response->withJson($data);
@@ -69,7 +69,7 @@ $app->get('/api/geocountries', function($request, $response, $args) {
 $app->post('/api/geocodingforward', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $body->spot . '&key=' . $API_GEOCODING; 
+    $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $body->spot . '&key=' . getenv('API_GEOCODING'); 
     $data = fetch_api(array($url,'results'));
     return $response->withJson($data);
 });
@@ -77,7 +77,7 @@ $app->post('/api/geocodingforward', function($request, $response, $args) {
 $app->post('/api/geocodingreverse', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $body->lat . '+' . $body->lon .'&key=' . $API_GEOCODING; 
+    $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $body->lat . '+' . $body->lon .'&key=' . getenv('API_GEOCODING'); 
     $data = fetch_api(array($url, 'results'));
     return $response->withJson($data);
 });
@@ -85,7 +85,7 @@ $app->post('/api/geocodingreverse', function($request, $response, $args) {
 $app->post('/api/weathercurrent', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url = 'api.openweathermap.org/data/2.5/weather?lat=' . $body->lat . '&lon=' . $body->lon. '&appid=' . $API_WEATHER . '&units=metric';
+    $url = 'api.openweathermap.org/data/2.5/weather?lat=' . $body->lat . '&lon=' . $body->lon. '&appid=' . getenv('API_WEATHER') . '&units=metric';
     $data = fetch_api(array($url, ''));
     return $response->withJson($data);
 });
@@ -93,7 +93,7 @@ $app->post('/api/weathercurrent', function($request, $response, $args) {
 $app->post('/api/wikiinfo', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url =  'https://secure.geonames.org/wikipediaSearchJSON?q=' . $body->spot . '&maxRows=10&username=' . $API_GEONAMES; 
+    $url =  'https://secure.geonames.org/wikipediaSearchJSON?q=' . $body->spot . '&maxRows=10&username=' . getenv('API_GEONAMES'); 
     $data = fetch_api(array($url, 'geonames'));
     return $response->withJson($data);
 });
@@ -101,7 +101,7 @@ $app->post('/api/wikiinfo', function($request, $response, $args) {
 $app->get('/api/currencieslatest', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url = 'https://openexchangerates.org/api/latest.json?app_id=' .$API_CURRENCIES;
+    $url = 'https://openexchangerates.org/api/latest.json?app_id=' .getenv('API_CURRENCIES');
     $data = fetch_api(array($url, ''));
     return $response->withJson($data);
 });
@@ -109,7 +109,7 @@ $app->get('/api/currencieslatest', function($request, $response, $args) {
 $app->post('/api/countrydata', function($request, $response, $args) {
     
     $body = json_decode($request->getBody());
-    $url =  'https://secure.geonames.org/countryInfoJSON?country='  . $body->countryCode .'&username=' . $API_GEONAMES;
+    $url =  'https://secure.geonames.org/countryInfoJSON?country='  . $body->countryCode .'&username=' . getenv('API_GEONAMES');
     $data = fetch_api(array($url, 'geonames'));
     return $response->withJson($data);
 });
