@@ -1,5 +1,5 @@
 <?php
-ini_set('memory_limit', '1024M');
+ini_set('memory_limit', '-1');
 function sortCitiesOfCountry($countryCode) {           
     $cities = json_decode(file_get_contents(dirname(__DIR__)."/resources/cities.json"), false); 
     
